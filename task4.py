@@ -38,7 +38,10 @@ def get_phone(args,contacts):
     
 
 def get_all(args,contacts):
-    return contacts
+    all_contacts = ""
+    for name,phone in contacts.items():
+        all_contacts += f'{name} : {phone}\n'
+    return all_contacts
 
 def main():
     contacts = {}
