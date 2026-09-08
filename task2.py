@@ -2,17 +2,20 @@ from typing import Callable
 import re
 from decimal import Decimal
 
-text = "Загальний дохід працівника складається з декількох частин: 1000.01 як основний дохід, доповнений додатковими надходженнями 27.45 і 324.00 доларів."
+text = "income 1000.05 , 333.33"
 
 def generator_numbers(text: str):
-    number_matches = re.findall(r'-?\d+\.?\d*', text)
-    
-    for match in number_matches:
-        try:
-            yield float(match)
-        except ValueError:
-            
-            continue
+    if len(text)>0:
+        number_matches = re.findall(r'\s-?\d+\.?\d*\s', text)
+        
+        for match in number_matches:
+            try:
+                yield Decimal(match)
+            except ValueError:
+                
+                continue
+    else:
+        return 0
         
 
 
