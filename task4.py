@@ -13,9 +13,12 @@ def input_error(func):
 
 
 def parse_input(user_input):
-    cmd, *args = user_input.split()
-    cmd = cmd.strip().lower()
-    return cmd, *args
+    if len(user_input)>0:
+        cmd, *args = user_input.split()
+        cmd = cmd.strip().lower()
+        return cmd, *args
+    else:
+        return "give me a command"
 
 @input_error
 def add_contact(args, contacts):
